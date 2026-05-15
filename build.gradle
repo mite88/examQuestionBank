@@ -19,22 +19,50 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-h2console'
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    implementation 'org.springframework.boot:spring-boot-starter-security'
-    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
-    implementation 'org.springframework.boot:spring-boot-starter-webmvc'
-    implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
-    compileOnly 'org.projectlombok:lombok'
-    runtimeOnly 'com.h2database:h2'
-    annotationProcessor 'org.projectlombok:lombok'
-    testImplementation 'org.springframework.boot:spring-boot-starter-data-jpa-test'
-    testImplementation 'org.springframework.boot:spring-boot-starter-security-test'
-    testImplementation 'org.springframework.boot:spring-boot-starter-thymeleaf-test'
-    testImplementation 'org.springframework.boot:spring-boot-starter-webmvc-test'
-    testCompileOnly 'org.projectlombok:lombok'
-    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-    testAnnotationProcessor 'org.projectlombok:lombok'
+    dependencies {
+        // 1. Web & Template Engine
+        implementation 'org.springframework.boot:spring-boot-starter-web' // spring-boot-starter-webmvc 포함
+        implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+        implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
+
+        // 2. Security
+        implementation 'org.springframework.boot:spring-boot-starter-security'
+
+        // 3. Database & Persistence (JPA, H2, MySQL, Flyway)
+        implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+        implementation 'org.springframework.boot:spring-boot-h2console'
+        implementation 'org.springframework.boot:spring-boot-starter-flyway'
+        implementation 'org.flywaydb:flyway-mysql'
+
+        runtimeOnly 'com.h2database:h2'
+        runtimeOnly 'com.mysql:mysql-connector-j'
+
+        // 4. QueryDSL (io.github.openfeign 버전 7.1)
+        implementation 'io.github.openfeign.querydsl:querydsl-jpa:7.1'
+        implementation 'io.github.openfeign.querydsl:querydsl-core:7.1'
+
+        // QueryDSL Q클래스 생성을 위한 Annotation Processor
+        annotationProcessor 'io.github.openfeign.querydsl:querydsl-apt:7.1:jakarta'
+
+        // Jakarta API (QueryDSL 및 JPA 컴파일 시 필요)
+        annotationProcessor "jakarta.annotation:jakarta.annotation-api"
+        annotationProcessor "jakarta.persistence:jakarta.persistence-api"
+
+        // 5. Lombok
+        compileOnly 'org.projectlombok:lombok'
+        annotationProcessor 'org.projectlombok:lombok'
+        testCompileOnly 'org.projectlombok:lombok'
+        testAnnotationProcessor 'org.projectlombok:lombok'
+
+        // 6. Test
+        testImplementation 'org.springframework.boot:spring-boot-starter-test' // MockMvc 등 포함
+        testImplementation 'org.springframework.boot:spring-boot-starter-security-test'
+        testImplementation 'org.springframework.boot:spring-boot-starter-data-jpa-test'
+        // Flyway 테스트를 위한 별도 의존성이 필요한 경우 유지 (Spring Boot 스타터에는 기본 포함되지 않음)
+        // testImplementation 'org.springframework.boot:spring-boot-starter-flyway-test'
+
+        testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    }
 }
 
 tasks.named('test') {

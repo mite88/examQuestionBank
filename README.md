@@ -21,15 +21,19 @@
 메시지만 보고도 어떤 작업을 했는지 알 수 있도록 `타입: 제목` 형식을 사용합니다.
 
 
+
 |**타입**|**설명**|**예시**|
 |---|---|---|
-|**`Plan`** (추가)|**계획 및 일정 수립**|`Plan: 2주차 보안 설정 개발 일정 작성`|
-|`Feat`|새로운 기능 추가|`Feat: 로그인 API 구현`|
-|`Fix`|버그 수정|`Fix: 검색 결과 페이징 오류 수정`|
-|`Docs`|문서 수정 (README 등)|`Docs: 설치 가이드 업데이트`|
-|`Style`|코드 포맷팅 (로직 변경 X)|`Style: 인덴트 수정 및 세미콜론 추가`|
-|`Refactor`|코드 리팩토링|`Refactor: Service 계층 로직 분리`|
-|`Chore`|빌드/설정/패키지 관리|`Chore: .gitignore 파일 설정`|
+|**`Plan`**|계획 및 일정 수립|`Plan: 1주차 핵심 기능 및 학습 로직 설계`|
+|**`Setup`**|**초기 환경 설정 (DB, Querydsl 등)**|`Setup: Querydsl 5.0 설정 및 Config 빈 등록`|
+|**`Study`**|**학습 내용 기록 (Issue Comment 등)**|`Study: CQRS 개념 정리 및 리포지토리 설계 방향`|
+|**`Feat`**|새로운 기능 추가 (Entity, Service 등)|`Feat: Member 엔티티 생성 및 Auditing 적용`|
+|**`Test`**|테스트 코드 작성 및 수정|`Test: KeywordRepository 단위 테스트 추가`|
+|**`Fix`**|버그 수정|`Fix: QClass 참조 오류 수정`|
+|**`Docs`**|문서 수정 (README, Wiki 등)|`Docs: 브랜치 전략 가이드 추가`|
+|**`Refactor`**|코드 리팩토링 (로직 개선)|`Refactor: 조회 전용 리포지토리 분리`|
+|**`Chore`**|단순 자잘한 작업 (빌드 설정, .gitignore)|`Chore: 의존성 라이브러리 버전 업데이트`|
+
 
 
 ---
