@@ -1,17 +1,19 @@
-package io.eddie.examquestionbank.config;
+package com.example.examquestionbank.config;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class QueryDslConfig {
 
-    //메서드에서 반환되는 객체(JPAQueryFactory)를 스프링 컨테이너에 등록
+    @PersistenceContext // 이제 에러가 사라질 거예요!
+    private EntityManager entityManager;
+
     @Bean
-    public JPAQueryFactory queryDslConfig(EntityManager entityManager){
+    public JPAQueryFactory jpaQueryFactory() { // 메소드 이름은 아까처럼 jpaQueryFactory로!
         return new JPAQueryFactory(entityManager);
     }
-
 }

@@ -1,7 +1,7 @@
-package io.eddie.examquestionbank.dao.member;
+package com.example.examquestionbank.dao.member;
 
+import com.example.examquestionbank.dao.*;
 import com.querydsl.jpa.impl.JPAQueryFactory;
-import io.eddie.examquestionbank.dao.*;
 import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -39,11 +39,13 @@ public class MemberRepository{
 
     @Transactional(readOnly = true)
     public Optional<Member> findByUserName(String username){
-        jpaQueryFactory.selectFrom(QMember.member)
+        //결과를 변수로 담기
+        Member result = jpaQueryFactory.selectFrom(QMember.member)
                 .where(QMember.member.username.eq(username))
-                .fetchFirst();
+                .fetchOne();
 
-        return Optional.ofNullable(entityManager.find(Member.class, username));
+        //return Optional.ofNullable(entityManager.find(Member.class, username));
+        return Optional.ofNullable(result);
     }
 
     //전체 검색

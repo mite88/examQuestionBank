@@ -1,8 +1,7 @@
-package io.eddie.examquestionbank.dao.keyword;
+package com.example.examquestionbank.dao.keyword;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
-import io.eddie.examquestionbank.dao.Keyword;
-import io.eddie.examquestionbank.dao.Subject;
+
 import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

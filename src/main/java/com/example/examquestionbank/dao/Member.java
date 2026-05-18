@@ -1,4 +1,4 @@
-package io.eddie.examquestionbank.dao;
+package com.example.examquestionbank.dao;
 
 import jakarta.persistence.*;
 import lombok.*;
